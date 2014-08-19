@@ -1,11 +1,12 @@
 <?php
 /*
 Plugin Name: Geo Data Store
-Plugin URI: http://l3rady.com/projects/geo-data-store/
+Plugin URI: http://quentincole.com/playground/geo-data-store/
 Description: Stores lng/lat co-ordinates in a better optimized table
-Author: Scott Cariss
-Version: 2.0.3
-Author URI: http://l3rady.com/
+Author: Quentin Cole
+Version: 2.1.0
+Author URI: http://quentincole.com/
+Contributors: Scott Cariss
 */
 
 /*  Copyright 2012  Scott Cariss  (email : scott@l3rady.com)
@@ -343,7 +344,7 @@ if ( ! class_exists( 'sc_GeoDataStore' ) )
 		 * @param string $orderby What order do you want the ID's returned as? ordered by distance ASC or DESC?
 		 * @return array $wpdb->get_col() array of ID's in ASC or DESC order as distance from point
 		*/
-		public static function getPostIDsByRange($post_type, $search_lat = 51.499882, $search_lng = -0.126178, $orderby = "ASC") {
+		public static function getPostIDsByRange($post_type, $search_lat = 51.499882, $search_lng = -0.126178, $orderby = "ASC", $limit = 18446744073709551615) {
 			global $wpdb;// Dont forget to include wordpress DB class
 			
 			// Create sql for distance check
@@ -372,6 +373,7 @@ if ( ! class_exists( 'sc_GeoDataStore' ) )
 			WHERE
 				`" . $wpdb->prefix . self::$tablename . "`.`post_type` = '{$post_type}'
 			ORDER BY `distance` {$orderby}
+			LIMIT $limit
 			"; // End $sqldistancecheck
 			
 			return $wpdb->get_col($sqldistancecheck);
