@@ -1,5 +1,5 @@
 === Geo Data Store ===
-Contributors: egojab, l3rady
+Contributors: no2pixel, l3rady
 Tags: geo, location, latitude, longitude, plugin
 Requires at least: 3.2
 Tested up to: 3.9.2
